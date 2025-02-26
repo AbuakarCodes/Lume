@@ -5,7 +5,7 @@ import Settings from "./SETTINGS/Settings";
 function SideBar({ isOpen, toggleSidebar }) {
   return (
     <div
-      className={` absolute lg:static top-0 left-0 z-50 min-h-screen p-4 pr-0 bg-[#F0F4F9] dark:bg-[#282A2C] 
+      className={` absolute lg:static top-0 left-0 z-50 h-dvh p-4 pr-0 bg-[#F0F4F9] dark:bg-[#282A2C] 
     transition-all duration-300 grid grid-rows-[auto_1fr_auto] md:rounded-tr-md md:rounded-br-md lg:rounded-tr-lg lg:rounded-br-lg overflow-hidden
     ${
       isOpen

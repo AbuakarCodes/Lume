@@ -33,7 +33,7 @@ function InputSection() {
             placeholder={`Ask From ${ProductName}`}
           />
 
-          <button disabled={isEnterQueryBlocked}  ref={sendbuttonRef}  onClick={QueryHandler} className={`inline-flex items-center justify-center w-10 h-10 text-sm ${isEnterQueryBlocked? "text-gray-400 cursor-not-allowed " :"text-black "} dark:text-white bg-white hover:bg-[#E4E8ED]    dark:hover:bg-[#1B1C1D] transition-all duration-150 rounded-full`}>
+          <button disabled={isEnterQueryBlocked}  ref={sendbuttonRef}  onClick={QueryHandler} className={`inline-flex items-center justify-center w-10 h-10 text-sm ${isEnterQueryBlocked? "text-gray-400 dark:text-white cursor-not-allowed " :"text-black "} dark:text-white bg-white hover:bg-[#E4E8ED]   dark:bg-[#1B1C1D] dark:hover:bg-[#323435] transition-all duration-150 rounded-full`}>
             <IoSend className="text-xl" />
           </button>
         </div>

@@ -17,7 +17,8 @@ function Navbar({ toggleSidebar, isSidebarOpen }) {
 
       <div>
         <a
-          href="#"
+          target="_blank"
+          href="https://github.com/AbuakarCodes/Lume.git"
           className=" lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-50 p-[.48rem] rounded-[50%] w-auto"
         >
           <FaGithub />
