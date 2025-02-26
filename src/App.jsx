@@ -7,7 +7,7 @@ export default function App() {
   return (
     
     <>
-      <div className="flex min-h-screen bg-white dark:bg-[#1B1C1D] text-black dark:text-white transition-all duration-300">
+      <div className="flex min-h-dvh bg-white dark:bg-[#1B1C1D] text-black dark:text-white transition-all duration-300">
         <SideBar
           isOpen={isSidebarOpen}
           toggleSidebar={() => setisSidebarOpen(!isSidebarOpen)}
