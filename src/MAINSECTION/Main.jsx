@@ -7,7 +7,7 @@ import { useMainContext } from "../CONTEXT/MainContext";
 function Main({ toggleSidebar, isSidebarOpen }) {
 
   return (
-    <main className="transition-all duration-300 p-3 pt-0 flex flex-col h-screen w-full bg-white text-black dark:text-white dark:bg-[#1B1C1D] relative">
+    <main className="transition-all duration-300 p-3 pt-0 flex flex-col min-h-dvh w-full bg-white text-black dark:text-white dark:bg-[#1B1C1D] relative">
       <Navbar toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} />
 
       <Chat />
