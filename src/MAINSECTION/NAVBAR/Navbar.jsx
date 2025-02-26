@@ -8,7 +8,7 @@ function Navbar({ toggleSidebar, isSidebarOpen }) {
       <div className="flex items-center gap-x-2">
         <button
           onClick={toggleSidebar}
-          className={` hover:bg-[#E2E7EB] lg:hidden dark:hover:bg-[#353739] transition-all duration-100 lg:p-[.48rem] rounded-[50%] w-auto`}
+          className={` text-xl hover:bg-[#E2E7EB] lg:hidden dark:hover:bg-[#353739] transition-all duration-100 lg:p-[.48rem] rounded-[50%] w-auto`}
         >
           <IoMenuSharp />
         </button>

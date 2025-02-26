@@ -16,7 +16,7 @@ function SideBar({ isOpen, toggleSidebar }) {
       <div className=" min-h-[7rem] w-full flex flex-col items-start justify-between ">
         <button
           onClick={toggleSidebar}
-          className=" lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto"
+          className="text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto"
         >
           <IoMenuSharp />
         </button>
