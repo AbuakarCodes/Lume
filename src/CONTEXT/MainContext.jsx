@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import { getAIResponse } from "../API/geminiAI";
 import { useEffect } from "react";
-import ChatLodingSkeleton from "../SKELETONS/ChatSkeleton"
+import ChatLodingSkeleton from "../SKELETONS/ChatSkeleton";
 
 let Context = createContext();
 export function useMainContext() {
@@ -14,6 +14,8 @@ function MainContext({ children }) {
   const [ModelResponse, setModelResponse] = useState("");
   const [QueryandResponse, setQueryandResponse] = useState([]);
   const [ChatLoding, setChatLoding] = useState(false);
+  const [MainBgComponent, setMainBgComponent] = useState(true)
+  const [isEnterQueryBlocked, setisEnterQueryBlocked] = useState(false)
 
   // let Data = {
   //   QueryStore: Query,
@@ -24,7 +26,7 @@ function MainContext({ children }) {
   //   (async function querySenderToModel() {
   //     if (Query) {
   //       setChatLoding(true);
-        
+
   //       setQueryandResponse((prev) => { return [...prev, { ...Data }] });
   //       setMainInput("");
 
@@ -35,45 +37,36 @@ function MainContext({ children }) {
   //   })();
   // }, [Query]);
 
-
   useEffect(() => {
     (async function querySenderToModel() {
       if (Query) {
         setChatLoding(true);
         setMainInput("");
-  
+        setMainBgComponent(false)
+        setisEnterQueryBlocked(true)
+
         setQueryandResponse((prev) => [
           ...prev,
-          { QueryStore: Query, 
-            ModelResponseStore: <ChatLodingSkeleton/>
-          }
+          { QueryStore: Query, ModelResponseStore: <ChatLodingSkeleton /> },
         ]);
-  
+
         let Response = await getAIResponse(Query);
-        setModelResponse(Response); // Update the state
-  
-        // setQueryandResponse((prev) => {
-        //   let updatedArray = [...prev];
-        //   updatedArray[updatedArray.length - 1].ModelResponseStore = Response; // Update last entry
-        //   return updatedArray;
-        // });
+        setModelResponse(Response); 
 
         setQueryandResponse((prev) =>
           prev.map((item, index) =>
-            index === prev.length - 1 ? { ...item, ModelResponseStore: Response } : item
+            index === prev.length - 1
+              ? { ...item, ModelResponseStore: Response }
+              : item
           )
         );
-        
-  
+
         setChatLoding(false);
+        setisEnterQueryBlocked(false)
       }
     })();
   }, [Query]);
-  
 
-
-
-  // console.log(QueryandResponse);
 
   let ContextData = {
     MainInput,
@@ -82,6 +75,8 @@ function MainContext({ children }) {
     setQuery,
     QueryandResponse,
     ChatLoding,
+    MainBgComponent,
+    isEnterQueryBlocked
   };
 
   return <Context.Provider value={ContextData}>{children}</Context.Provider>;

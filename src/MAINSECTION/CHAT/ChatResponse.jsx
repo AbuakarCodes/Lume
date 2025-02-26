@@ -1,8 +1,6 @@
-import { useMainContext } from "../../CONTEXT/MainContext";
 import LOGO from "../../IMAGES/LOGO.svg";
 
 function ChatResponse({ ModelResponseStore, QueryStore }) {
-  console.log(Boolean(ModelResponseStore))
   return (
     <>
       <div className="flex flex-col gap-y-8 text-[1rem] ">
