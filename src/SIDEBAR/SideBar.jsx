@@ -1,8 +1,14 @@
 import { IoMenuSharp } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
 import Settings from "./SETTINGS/Settings";
+import { useMainContext } from "../CONTEXT/MainContext";
 
 function SideBar({ isOpen, toggleSidebar }) {
+  let { setQueryandResponse } = useMainContext();
+  function newChatHandler() {
+    setQueryandResponse([]);
+    localStorage.removeItem("QueryandResponseLocal");
+  }
   return (
     <div
       className={` absolute lg:static top-0 left-0 z-50 h-dvh p-4 pr-0 bg-[#F0F4F9] dark:bg-[#282A2C] 
@@ -21,10 +27,15 @@ function SideBar({ isOpen, toggleSidebar }) {
           <IoMenuSharp />
         </button>
 
-        <button className="p-[.18rem] rounded-[50%]  flex items-center w-auto">
-          <IoMdAdd />
+        <div className={`w-[7rem] h-8 flex items-center gap-x-2`}>
+          <button
+            onClick={newChatHandler}
+            className="text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto"
+          >
+            <IoMdAdd />
+          </button>
           {isOpen ? <div className="text-[.9rem]">New chat</div> : null}
-        </button>
+        </div>
       </div>
 
       <div className="min-h-[70%] "></div>

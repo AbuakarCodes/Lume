@@ -12,38 +12,20 @@ function MainContext({ children }) {
   const [MainInput, setMainInput] = useState("");
   const [Query, setQuery] = useState("");
   const [ModelResponse, setModelResponse] = useState("");
-  const [QueryandResponse, setQueryandResponse] = useState([]);
+  const gettingQueryandResponseLocal = localStorage.getItem(
+    "QueryandResponseLocal"
+  );
+  const parsedQueryandResponseLocal = gettingQueryandResponseLocal ? JSON.parse(gettingQueryandResponseLocal): [];
+  const [QueryandResponse, setQueryandResponse] = useState(parsedQueryandResponseLocal);
   const [ChatLoding, setChatLoding] = useState(false);
-  const [MainBgComponent, setMainBgComponent] = useState(true)
-  const [isEnterQueryBlocked, setisEnterQueryBlocked] = useState(false)
-
-  // let Data = {
-  //   QueryStore: Query,
-  //   ModelResponseStore: ModelResponse,
-  // }
-
-  // useEffect(() => {
-  //   (async function querySenderToModel() {
-  //     if (Query) {
-  //       setChatLoding(true);
-
-  //       setQueryandResponse((prev) => { return [...prev, { ...Data }] });
-  //       setMainInput("");
-
-  //       let Response = await getAIResponse(Query);
-  //       setModelResponse(Response);
-  //       setChatLoding(false);
-  //     }
-  //   })();
-  // }, [Query]);
+  const [isEnterQueryBlocked, setisEnterQueryBlocked] = useState(false);
 
   useEffect(() => {
     (async function querySenderToModel() {
       if (Query) {
         setChatLoding(true);
         setMainInput("");
-        setMainBgComponent(false)
-        setisEnterQueryBlocked(true)
+        setisEnterQueryBlocked(true);
 
         setQueryandResponse((prev) => [
           ...prev,
@@ -51,7 +33,7 @@ function MainContext({ children }) {
         ]);
 
         let Response = await getAIResponse(Query);
-        setModelResponse(Response); 
+        setModelResponse(Response);
 
         setQueryandResponse((prev) =>
           prev.map((item, index) =>
@@ -62,11 +44,28 @@ function MainContext({ children }) {
         );
 
         setChatLoding(false);
-        setisEnterQueryBlocked(false)
+        setisEnterQueryBlocked(false);
       }
     })();
   }, [Query]);
 
+  useEffect(() => {
+    if (QueryandResponse) {
+      const serializableData = JSON.parse(
+        JSON.stringify(QueryandResponse, (key, value) => {
+          if (typeof value === "object" && value !== null && value.$$typeof) {
+            return undefined;
+          }
+          return value;
+        })
+      );
+
+      localStorage.setItem(
+        "QueryandResponseLocal",
+        JSON.stringify(serializableData)
+      );
+    }
+  }, [QueryandResponse]);
 
   let ContextData = {
     MainInput,
@@ -74,9 +73,9 @@ function MainContext({ children }) {
     Query,
     setQuery,
     QueryandResponse,
+    setQueryandResponse,
     ChatLoding,
-    MainBgComponent,
-    isEnterQueryBlocked
+    isEnterQueryBlocked,
   };
 
   return <Context.Provider value={ContextData}>{children}</Context.Provider>;
