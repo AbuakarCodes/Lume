@@ -37,7 +37,7 @@ function MainContext({ children }) {
 
         setQueryandResponse((prev) => [
           ...prev,
-          { QueryStore: Query, ModelResponseStore: <ChatLodingSkeleton /> },
+          { QueryStore: Query, ModelResponseStore: <ChatLodingSkeleton />, imageAnimation: true },
         ]);
 
         let Response = await getAIResponse(Query);
@@ -46,7 +46,7 @@ function MainContext({ children }) {
         setQueryandResponse((prev) =>
           prev.map((item, index) =>
             index === prev.length - 1
-              ? { ...item, ModelResponseStore: Response }
+              ? { ...item, ModelResponseStore: Response, imageAnimation: false }
               : item
           )
         );

@@ -1,6 +1,6 @@
 import LOGO from "../../IMAGES/LOGO.svg";
 
-function ChatResponse({ ModelResponseStore, QueryStore }) {
+function ChatResponse({ ModelResponseStore, QueryStore, imageAnimation }) {
   return (
     <>
       <div className="flex flex-col gap-y-8 text-[1rem] ">
@@ -9,9 +9,9 @@ function ChatResponse({ ModelResponseStore, QueryStore }) {
         </div>
         <div className="flex flex-col gap-y-8  items-start text-[1rem]">
           <div className=" self-start flex items-start gap-x-4 md:gap-x-6">
-            <div className="flex  flex-shrink-0">
+            <div className="flex  flex-shrink-0 rounded-[50%]">
               <img
-                className="w-6 h-6 self-start animate-slowSpin"
+                className={`${imageAnimation?"animate-slowSpin":null}  w-6 h-6 self-start`}
                 src={LOGO}
                 alt="Logo"
               />

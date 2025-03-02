@@ -9,7 +9,7 @@ function Chat() {
         <div className=" scroll-smooth  flex flex-col  gap-y-4 ">
           {
             QueryandResponse.map((elem)=>{
-              return <ChatResponse QueryStore={elem.QueryStore} ModelResponseStore={elem.ModelResponseStore}/>
+              return <ChatResponse QueryStore={elem.QueryStore} ModelResponseStore={elem.ModelResponseStore} imageAnimation={elem.imageAnimation}/>
             })
           }
         </div>

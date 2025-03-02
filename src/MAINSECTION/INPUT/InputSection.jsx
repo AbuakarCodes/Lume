@@ -1,10 +1,11 @@
-import { IoMdAdd } from "react-icons/io";
-import { IoSend } from "react-icons/io5";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast, Slide } from "react-toastify";
 import ProductName from "../../../NAME";
 import { useMainContext } from "../../CONTEXT/MainContext";
+import { IoMdAdd } from "react-icons/io";
+import { IoSend } from "react-icons/io5";
 import { useRef } from "react";
-import { ToastContainer, toast, Slide } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 function InputSection() {
   let { setMainInput, MainInput, setQuery, isEnterQueryBlocked } =
@@ -20,6 +21,16 @@ function InputSection() {
     setQuery(MainInput);
   }
 
+  useEffect(() => {
+    function whenKeyboardbtnHandler(e) {
+      if (e.key === "Enter") QueryHandler()
+    }
+    window.addEventListener("keydown", whenKeyboardbtnHandler);
+    return () => {
+      window.removeEventListener("keydown", whenKeyboardbtnHandler);
+    };
+  }, []);
+
   function ShowToster() {
     toast.info("Feature unavailable.", {
       position: "top-right",
@@ -30,7 +41,7 @@ function InputSection() {
       draggable: true,
       progress: undefined,
       theme: "light",
-      transition: Slide, 
+      transition: Slide,
     });
   }
 

@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import KEY from "../../APIkey";
+import {KEY} from "../../APIkey";
 
 const apiKey = KEY;
 // Their is no API key here so have your own 👐
