@@ -75,7 +75,7 @@ function InputSection() {
 
         <ToastContainer
           position="top-right"
-          autoClose={1100}
+          autoClose={100}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick={false}
