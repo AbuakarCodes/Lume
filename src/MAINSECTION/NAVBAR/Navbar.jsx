@@ -5,7 +5,7 @@ import Theme from "./Theme";
 
 function Navbar({ toggleSidebar, isSidebarOpen }) {
   return (
-    <div className=" flex items-center justify-between w-full lg:py-4  lg:px-2">
+    <div className=" flex items-center justify-between w-full py-4  lg:px-2">
       <div className="flex items-center gap-x-2">
         <button
           onClick={toggleSidebar}

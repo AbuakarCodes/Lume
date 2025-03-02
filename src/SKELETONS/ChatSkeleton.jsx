@@ -4,7 +4,7 @@ import React from "react";
 
 function ChatLoadingSkeleton() {
   return (
-    <div className="w-full flex flex-col gap-2">
+    <div className="w-full flex flex-col gap-1 lg:gap-2">
       <Skeleton
         baseColor="#E5E7EB"
         highlightColor="#F3F4F6"

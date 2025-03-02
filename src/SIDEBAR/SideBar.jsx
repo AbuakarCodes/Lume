@@ -37,7 +37,9 @@ function SideBar({ isOpen, toggleSidebar }) {
           <button className="  text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto">
             <IoMdAdd />
           </button>
-          {isOpen ? <div className="text-[.9rem] cursor-pointer">New chat</div> : null}
+          {isOpen ? (
+            <div className="text-[.9rem] cursor-pointer">New chat</div>
+          ) : null}
         </div>
       </div>
 
@@ -54,11 +56,11 @@ function SideBar({ isOpen, toggleSidebar }) {
         })}
       </div>
 
-      <div>
+      <div className="flex">
         <Link
           target="_blank"
           to="https://github.com/AbuakarCodes/Lume.git"
-          className=" lg:block   p-[.48rem] rounded-[50%] w-auto"
+          className=" lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] p-[.48rem] rounded-[50%] "
         >
           <FaGithub />
         </Link>
