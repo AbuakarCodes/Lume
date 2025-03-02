@@ -1,6 +1,7 @@
 import { FaGithub } from "react-icons/fa6";
 import { IoMenuSharp } from "react-icons/io5";
 import ProductName from "../../../NAME";
+import Theme from "./Theme";
 
 function Navbar({ toggleSidebar, isSidebarOpen }) {
   return (
@@ -15,15 +16,7 @@ function Navbar({ toggleSidebar, isSidebarOpen }) {
         <h1 className="text-xl font-semibold"> {ProductName}</h1>
       </div>
 
-      <div>
-        <a
-          target="_blank"
-          href="https://github.com/AbuakarCodes/Lume.git"
-          className=" lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-50 p-[.48rem] rounded-[50%] w-auto"
-        >
-          <FaGithub />
-        </a>
-      </div>
+      <Theme />
     </div>
   );
 }

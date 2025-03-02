@@ -3,7 +3,7 @@ import { FiSun } from "react-icons/fi";
 import { useState } from "react";
 import { useEffect } from "react";
 
-function Settings() {
+function Theme() {
   const [isDark, setisDark] = useState(
     JSON.parse(localStorage.getItem("isDarkLocal")) || false
   );
@@ -33,4 +33,4 @@ function Settings() {
   );
 }
 
-export default Settings;
+export default Theme;

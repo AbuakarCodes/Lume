@@ -12,13 +12,21 @@ function MainContext({ children }) {
   const [MainInput, setMainInput] = useState("");
   const [Query, setQuery] = useState("");
   const [ModelResponse, setModelResponse] = useState("");
+
   const gettingQueryandResponseLocal = localStorage.getItem(
     "QueryandResponseLocal"
   );
-  const parsedQueryandResponseLocal = gettingQueryandResponseLocal ? JSON.parse(gettingQueryandResponseLocal): [];
-  const [QueryandResponse, setQueryandResponse] = useState(parsedQueryandResponseLocal);
+  const parsedQueryandResponseLocal = gettingQueryandResponseLocal
+    ? JSON.parse(gettingQueryandResponseLocal)
+    : [];
+  const [QueryandResponse, setQueryandResponse] = useState(
+    parsedQueryandResponseLocal
+  );
+
   const [ChatLoding, setChatLoding] = useState(false);
   const [isEnterQueryBlocked, setisEnterQueryBlocked] = useState(false);
+
+  const [HistoryChat, setHistoryChat] = useState([]);
 
   useEffect(() => {
     (async function querySenderToModel() {
@@ -49,9 +57,10 @@ function MainContext({ children }) {
     })();
   }, [Query]);
 
+  let serializableData = "";
   useEffect(() => {
     if (QueryandResponse) {
-      const serializableData = JSON.parse(
+      serializableData = JSON.parse(
         JSON.stringify(QueryandResponse, (key, value) => {
           if (typeof value === "object" && value !== null && value.$$typeof) {
             return undefined;
@@ -64,6 +73,8 @@ function MainContext({ children }) {
         "QueryandResponseLocal",
         JSON.stringify(serializableData)
       );
+      setHistoryChat(serializableData);
+      localStorage.setItem("ChatHistoryLocal", JSON.stringify(HistoryChat));
     }
   }, [QueryandResponse]);
 
@@ -76,6 +87,8 @@ function MainContext({ children }) {
     setQueryandResponse,
     ChatLoding,
     isEnterQueryBlocked,
+    HistoryChat,
+    setHistoryChat,
   };
 
   return <Context.Provider value={ContextData}>{children}</Context.Provider>;

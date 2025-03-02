@@ -1,25 +1,28 @@
 import { IoMenuSharp } from "react-icons/io5";
 import { IoMdAdd } from "react-icons/io";
-import Settings from "./SETTINGS/Settings";
 import { useMainContext } from "../CONTEXT/MainContext";
+import { FaGithub } from "react-icons/fa6";
+import ChatHstory from "./CHAThISTORY/ChatHstory";
+import { Link } from "react-router";
 
 function SideBar({ isOpen, toggleSidebar }) {
-  let { setQueryandResponse } = useMainContext();
+  let { HistoryChat, setHistoryChat, setQueryandResponse, QueryandResponse } =
+    useMainContext();
   function newChatHandler() {
-    setQueryandResponse([]);
     localStorage.removeItem("QueryandResponseLocal");
+    setQueryandResponse([]);
   }
   return (
     <div
       className={` absolute lg:static top-0 left-0 z-50 h-dvh p-4 pr-0 bg-[#F0F4F9] dark:bg-[#282A2C] 
-    transition-all duration-300 grid grid-rows-[auto_1fr_auto] md:rounded-tr-md md:rounded-br-md lg:rounded-tr-lg lg:rounded-br-lg overflow-hidden
+    transition-all duration-300 flex flex-col md:rounded-tr-md md:rounded-br-md lg:rounded-tr-lg lg:rounded-br-lg overflow-hidden
     ${
       isOpen
         ? "w-[75%] lg:w-[25%] translate-x-0"
         : "w-0 lg:w-[5%] -translate-x-full lg:translate-x-0"
     }`}
     >
-      <div className=" min-h-[7rem] w-full flex flex-col items-start justify-between ">
+      <div className=" min-h-[7rem] w-full flex flex-col items-start justify-between mb-[1rem] md:mb-[2rem] lg:mb-[3rem]">
         <button
           onClick={toggleSidebar}
           className="text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto"
@@ -27,20 +30,39 @@ function SideBar({ isOpen, toggleSidebar }) {
           <IoMenuSharp />
         </button>
 
-        <div className={`w-[7rem] h-8 flex items-center gap-x-2`}>
-          <button
-            onClick={newChatHandler}
-            className="text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto"
-          >
+        <div
+          onClick={newChatHandler}
+          className={` w-[7rem] h-8 flex items-center gap-x-2`}
+        >
+          <button className="  text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto">
             <IoMdAdd />
           </button>
-          {isOpen ? <div className="text-[.9rem]">New chat</div> : null}
+          {isOpen ? <div className="text-[.9rem] cursor-pointer">New chat</div> : null}
         </div>
       </div>
 
-      <div className="min-h-[70%] "></div>
+      <div className={`${!isOpen ? "invisible" : null} mb-6`}>
+        <h1>Chat History</h1>
+      </div>
+      <div
+        className={`${
+          !isOpen ? "invisible" : null
+        } h-[70%]  grow overflow-y-scroll no-scrollbar scroll-smooth px-[.48rem]  `}
+      >
+        {HistoryChat.map((elem) => {
+          return <ChatHstory ChatHstoryQueryStore={elem.QueryStore} />;
+        })}
+      </div>
 
-      <Settings />
+      <div>
+        <Link
+          target="_blank"
+          to="https://github.com/AbuakarCodes/Lume.git"
+          className=" lg:block   p-[.48rem] rounded-[50%] w-auto"
+        >
+          <FaGithub />
+        </Link>
+      </div>
     </div>
   );
 }
