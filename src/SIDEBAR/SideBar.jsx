@@ -32,14 +32,14 @@ function SideBar({ isOpen, toggleSidebar }) {
 
         <div
           onClick={newChatHandler}
-          className={`${isOpen?"cursor-pointer dark:bg-[#1B1C1D] bg-white":null}  h-8 flex items-center gap-x-2  rounded-[.68rem] py-6  pr-6 `}
+          className={`${
+            isOpen ? "cursor-pointer dark:bg-[#1B1C1D] bg-white" : null
+          }  h-8 flex items-center gap-x-2  rounded-[.68rem] py-6  pr-6 `}
         >
           <button className="  text-xl lg:block hover:bg-[#E2E7EB] dark:hover:bg-[#353739] transition-all duration-100 p-[.48rem] rounded-[50%] w-auto">
             <IoMdAdd />
           </button>
-          {isOpen ? (
-            <div className="text-[.9rem]">New chat</div>
-          ) : null}
+          {isOpen ? <div className="text-[.9rem]">New chat</div> : null}
         </div>
       </div>
 
